@@ -3,8 +3,12 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.DataInputStream;
@@ -22,6 +26,11 @@ public class Controller {
     @FXML
     TextField textField;
 
+    Stage stage;
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @FXML
     private void onSubmit(){
         String text = textField.getText();
@@ -34,10 +43,17 @@ public class Controller {
             exception.printStackTrace();
         }
     }
+
     @FXML
-    private void connect(){
+    private void buttonOn() throws Exception{
+
+        stage.setTitle("Клиент сетевого чата");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setScene(new Scene(root, 500, 300));
+
         try {
-            socket = new Socket("45.80.70.161",8188);
+            socket = new Socket("45.80.70.161",8189);
             DataInputStream in =new DataInputStream(socket.getInputStream());
             out=new DataOutputStream(socket.getOutputStream());
             String response = in.readUTF(); // Ждём сообщение от сервера
@@ -59,6 +75,8 @@ public class Controller {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+
+     
     }
 
 }
