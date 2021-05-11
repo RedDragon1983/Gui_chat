@@ -6,7 +6,6 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Button onAction="#connect" prefHeight="30" prefWidth="Infinity" text="Подключиться" />
         <TextArea editable="false" fx:id="textArea" prefHeight="240.0" prefWidth="275.0">
             <font>
                 <Font size="18.0" />
